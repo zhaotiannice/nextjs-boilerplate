@@ -25,7 +25,7 @@ export default async function Home() {
           toogle
         </button> */}
 
-        <JobItemList data={data} />
+        <JobItemList data={data as any} />
       </div>
 
       {/* {show && <iframe src="/" style={{ height: "50vh", width: "100vw" }} />} */}

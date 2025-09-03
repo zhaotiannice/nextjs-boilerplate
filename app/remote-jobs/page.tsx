@@ -15,7 +15,7 @@ export default async function Home() {
         <span style={{ display: "none" }}>{Date.now() - start}</span>
         <Header />
         <PageTitle title="Remote Jobs" />
-        <JobItemList data={data} />
+        <JobItemList data={data as any} />
       </div>
       <p>remote footer</p>
     </>

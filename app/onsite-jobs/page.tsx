@@ -17,7 +17,7 @@ export default async function Home() {
         <Header />
         <PageTitle title="Onsite Jobs" />
 
-        <JobItemList data={data} />
+        <JobItemList data={data as any} />
       </div>
 
       <div>onsite footer</div>
