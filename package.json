@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev:performance": "cd src/packages/performance && webpack --config webpack.config.js --mode development --watch",
+    "build:performance": "cd src/packages/performance && webpack --config webpack.config.js --color",
+    "build:next": "next build --turbopack",
+    "build": "npm run build:performance && echo '\\033[32mPerformance build completed\\033[0m' && npm run build:next",
+    "dev": "npm run dev:performance && next dev --turbopack",
     "start": "next start"
   },
   "dependencies": {
@@ -19,6 +22,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "ts-loader": "^9.5.4"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "esnext",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": false,
+    "noEmit": false, // 必须为false
+    "outDir": "./temp", // 临时目录，实际由webpack控制输出
+    "isolatedModules": true,
+    "noImplicitAny": false // 允许隐式 any
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
