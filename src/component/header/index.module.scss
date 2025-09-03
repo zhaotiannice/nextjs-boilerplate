@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  .checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    user-select: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
