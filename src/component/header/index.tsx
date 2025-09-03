@@ -11,7 +11,7 @@ export const Header = () => {
     setUseLocalRoute(sessionStorage.getItem(key) === "true");
   }, []);
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event: any) => {
     let checked = event.target.checked;
     setUseLocalRoute(checked);
     sessionStorage.setItem(key, `${checked}`);

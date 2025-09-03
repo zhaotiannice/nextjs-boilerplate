@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import styles from "./index.pc.module.scss";
 import { Avatar } from "./Avatar";
 
-function classNames(obj) {
+function classNames(obj: any) {
   if (typeof obj !== "object" || obj === null) {
     return "";
   }
@@ -21,14 +21,14 @@ function classNames(obj) {
   return classes.join(" ");
 }
 
-const JobTags = ({ featureTags, normalTags, maxRow }) => {
+const JobTags = ({ featureTags, normalTags, maxRow }: any) => {
   const styledFeatureTags = useMemo(() => {
     const colors = ["#E4FDFF", "#E8F3FF"];
     const getColor = () => {
       return colors[Math.random() > 0.5 ? 1 : 0];
     };
 
-    return (featureTags || [])?.slice(0, 3)?.map((item) => {
+    return (featureTags || [])?.slice(0, 3)?.map((item: any) => {
       return {
         tag: item,
         style: { background: getColor() },
@@ -49,7 +49,7 @@ const JobTags = ({ featureTags, normalTags, maxRow }) => {
         style={{ maxHeight: maxRow * 24 + Math.max((maxRow - 1) * 8, 0) }}
       >
         {normalTags?.length > 0
-          ? totalTags.map((item, index) => {
+          ? totalTags.map((item: any, index) => {
               let tag = item.tag || item;
               let style = item.style || null;
               return (
@@ -68,7 +68,7 @@ const JobTags = ({ featureTags, normalTags, maxRow }) => {
   );
 };
 
-const Company = ({ company }) => {
+const Company = ({ company }: any) => {
   return (
     <div
       className={classNames({
@@ -92,7 +92,7 @@ const Company = ({ company }) => {
   );
 };
 
-const Recruiter = ({ recruiter, company }) => {
+const Recruiter = ({ recruiter, company }: any) => {
   const { reply_label = "", reply_label_number = "" } = recruiter;
 
   let reply = reply_label;
@@ -131,7 +131,7 @@ const Recruiter = ({ recruiter, company }) => {
   );
 };
 
-const Salary = ({ salary_info }) => {
+const Salary = ({ salary_info }: any) => {
   return (
     <div className={styles.salary}>
       <span className={styles.salaryText}>
@@ -161,7 +161,7 @@ const UrgentIcon = () => {
   );
 };
 
-export const JobCardPc = ({ item }) => {
+export const JobCardPc = ({ item }: any) => {
   const {
     company = {},
     salary_info = {},
