@@ -117,7 +117,6 @@ export class ReportKit {
       this.#pushTask({
         type,
         logData: data,
-        pageInfo: utils.getPageInfo(),
         browserInfo: this.#deviceInfo,
       });
     } catch (error) {

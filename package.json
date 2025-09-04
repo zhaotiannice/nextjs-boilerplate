@@ -7,7 +7,7 @@
     "build:performance": "cd src/packages/performance && webpack --config webpack.config.js --color",
     "build:next": "next build --turbopack",
     "build": "npm run build:performance && echo '\\033[32mPerformance build completed\\033[0m' && npm run build:next",
-    "dev": "npm run dev:performance && next dev --turbopack",
+    "dev": "npm run dev:performance & next dev --turbopack",
     "start": "next start"
   },
   "dependencies": {
