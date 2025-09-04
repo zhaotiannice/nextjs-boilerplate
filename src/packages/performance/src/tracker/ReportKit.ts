@@ -58,7 +58,7 @@ export class ReportKit {
 
   #getParameters() {
     return {
-      deviceInfo: this.#deviceInfo,
+      browserInfo: this.#deviceInfo,
       data: this.#queue,
     };
   }
@@ -117,7 +117,6 @@ export class ReportKit {
       this.#pushTask({
         type,
         logData: data,
-        browserInfo: this.#deviceInfo,
       });
     } catch (error) {
       console.error(error);
