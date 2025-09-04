@@ -3,8 +3,6 @@ type movingLogType = {
   time: number;
 };
 
-const allowReportMultiple = true;
-
 const globalRecordKey = {
   key: "key",
   positions: "positions",
@@ -27,7 +25,7 @@ const createRecorder = (key: any) => {
 
 let logs = [] as any[];
 if (typeof window !== "undefined") {
-  (window as any).logs = logs;
+  (window as any).getLogs = () => logs;
 }
 
 const getRect = (element: HTMLElement) => {
@@ -35,13 +33,14 @@ const getRect = (element: HTMLElement) => {
   return `${width | 0}.${height | 0}`;
 };
 
+let roleKey = "data-role";
 const getHtmlStructure = (element: HTMLElement) => {
   const getByRole = (role: any) => {
-    return element.querySelector(`[data-role="${role}"]`);
+    return element.querySelector(`[${roleKey}="${role}"]`);
   };
 
   let getAllByRole = (role: string) => {
-    return element.querySelectorAll(`[data-role="${role}"]`);
+    return element.querySelectorAll(`[${roleKey}="${role}"]`);
   };
 
   const header = getByRole("header")?.textContent || "";
@@ -104,7 +103,7 @@ const createWindowMoving = ({
   let windowMovingBind = false;
 
   const windowMoving = (event: any) => {
-    const keyStr = "data-observer-key";
+    const keyStr = roleKey;
     const target = event.target as HTMLElement;
     const closestObserverElement = target.closest(`[${keyStr}]`);
     const key = closestObserverElement?.getAttribute?.(keyStr);
@@ -198,7 +197,6 @@ const createMouseAction = ({
   const handleMouseMove = (event: any) => {
     const currentTime = now();
     if (currentTime - lastTime >= throttleDelay) {
-      // 每 50ms 记录一次
       logPosition({ key, event, rootElement: ele, monitorKey });
       lastTime = currentTime;
     }
@@ -244,7 +242,6 @@ const createMouseAction = ({
 
   element.addEventListener("mouseenter", mouseEnter);
 
-  // console.log("key", key);
   return {
     destroy: () => {
       destroyEventListener({ destroyEnter: true });
@@ -252,10 +249,7 @@ const createMouseAction = ({
   };
 };
 
-function createMonitorForJobs({
-  duration = 2000,
-  onSend = (data: any) => {},
-} = {}) {
+function createMonitor({ duration = 2000, onSend = (data: any) => {} } = {}) {
   const itemRefs = new Map();
   const monitoringRef = new Map();
   const finishedRef = new Set();
@@ -267,7 +261,7 @@ function createMonitorForJobs({
 
   function sendCallback(data) {
     const reportArray = [];
-    const allowReportMultiple = true; // 可以根据需要调整
+    const allowReportMultiple = true;
 
     data.forEach((key) => {
       let shouldAdd = true;
@@ -365,7 +359,6 @@ function createMonitorForJobs({
 
     observeRef = observer;
 
-    // 观察所有已注册的元素
     itemRefs.forEach((element, key) => {
       if (element) {
         observer.observe(element);
@@ -405,7 +398,6 @@ function createMonitorForJobs({
 
   let cleanupObserver = null;
 
-  // 初始化观察器
   function init() {
     if (cleanupObserver) {
       cleanupObserver();
@@ -414,10 +406,8 @@ function createMonitorForJobs({
     return cleanupObserver;
   }
 
-  // 注册元素的方法
   function registerItem(itemId, element) {
     if (element && itemId) {
-      // element.setAttribute("data-item-id", itemId);
       const oldElement = itemRefs.get(itemId);
       const observe = observeRef;
 
@@ -432,24 +422,12 @@ function createMonitorForJobs({
     }
   }
 
-  // 更新配置的方法
-  function updateConfig(newConfig) {
-    if (newConfig.duration !== undefined) {
-      duration = newConfig.duration;
-    }
-    if (newConfig.onSend !== undefined) {
-      onSendRef = newConfig.onSend;
-    }
-  }
-
-  // 销毁方法
   function destroy() {
     if (cleanupObserver) {
       cleanupObserver();
       cleanupObserver = null;
     }
 
-    // 清理所有处理器
     Object.values(handlerRef).forEach((handler: any) => {
       if (handler && handler.destroy) {
         handler.destroy();
@@ -462,29 +440,21 @@ function createMonitorForJobs({
     observeRef = null;
   }
 
-  // 返回公共方法
   return {
     init,
     registerItem,
-    updateConfig,
     destroy,
-    get monitoringMap() {
-      return new Map(monitoringRef);
-    },
-    get finishedItems() {
-      return new Set(finishedRef);
-    },
   };
 }
 
-let tracker = createMonitorForJobs({
+let tracker = createMonitor({
   onSend(e) {
-    console.log("ele");
+    // console.log("ele");
   },
 });
 tracker.init();
 
-export const initActionRun = () => {
+export const initUserAction = () => {
   if (!window.MutationObserver) return;
 
   let getId = (element: HTMLElement) => {
