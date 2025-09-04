@@ -11,7 +11,7 @@ const rtk = new ReportKit({ endpoint, requestThreshold: 1000 * 3 });
 reportPageView({
   // router change
   onReport(data) {
-    console.log("data", data);
+    // console.log("data", data);
     rtk.reportData({
       type: "page_view",
       data: data,
@@ -33,13 +33,13 @@ createPerformanceMonitor({
     // lcp', 'navigationTiming', 'ttfb', 'fcp', 'firstPaint', 'cls'
     // let { lcp, ttfb, fcp } = data
     if (data.lcp > 2500 || data.ttfb >= 2000 || data.fcp >= 3000) {
-      console.log("onFirst", { data });
+      // console.log("onFirst", { data });
       rtk.reportData({ type: "init-page", data });
     }
   },
   onReport(data, type) {
     // report first-input and resource
-    console.log("onReport", type, data);
+    // console.log("onReport", type, data);
 
     rtk.reportData({ type, data });
   },
