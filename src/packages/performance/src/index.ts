@@ -3,10 +3,12 @@ import { exposureTracker } from "./tracker/exposureTracker";
 import { ReportKit } from "./tracker/ReportKit";
 import { createPerformanceMonitor } from "./tracker/monitors/pagePerformanceMonitor";
 import { reportPageView } from "./tracker/monitors/page";
+import { initActionRun } from "./action/useMonitorForJobs";
 
 const endpoint = "/api/submit";
-
 const rtk = new ReportKit({ endpoint, requestThreshold: 1000 * 3 });
+
+initActionRun();
 
 reportPageView({
   onReport(data) {

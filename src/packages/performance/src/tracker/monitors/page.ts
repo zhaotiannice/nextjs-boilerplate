@@ -152,7 +152,7 @@ export const reportPageView = ({ onReport }) => {
     language: "en",
     otherPageViewData: {},
     from: getEnhancedReferrer() || "",
-    ...(deviceInfo.routeInfo)
+    ...deviceInfo.routeInfo,
   };
 
   onReport?.(parameter);
@@ -166,13 +166,13 @@ export const reportPageView = ({ onReport }) => {
 
       try {
         if (last !== currentPath) {
-          let routeInfo = (getDeviceKeyAndRouteInfo().routeInfo);
+          let routeInfo = getDeviceKeyAndRouteInfo().routeInfo;
 
           let newParameters = {
             ...parameter,
             from: last,
-            ...routeInfo
-          }
+            ...routeInfo,
+          };
 
           onReport?.(JSON.parse(JSON.stringify(newParameters)));
 
@@ -207,5 +207,3 @@ export const reportPageView = ({ onReport }) => {
 
   observeDom();
 };
-
-console.log("getEnhancedReferrer", getEnhancedReferrer());

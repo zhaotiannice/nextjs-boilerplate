@@ -25,7 +25,7 @@ const JobTags = ({ featureTags, normalTags, maxRow }: any) => {
   const styledFeatureTags = useMemo(() => {
     const colors = ["#E4FDFF", "#E8F3FF"];
     const getColor = () => {
-      return colors[Math.random() > 0.5 ? 1 : 0];
+      return colors[0];
     };
 
     return (featureTags || [])?.slice(0, 3)?.map((item: any) => {
@@ -54,6 +54,7 @@ const JobTags = ({ featureTags, normalTags, maxRow }: any) => {
               let style = item.style || null;
               return (
                 <span
+                  data-role="tags"
                   className={styles.jobCardLocationItem}
                   style={style}
                   key={index}
@@ -69,6 +70,7 @@ const JobTags = ({ featureTags, normalTags, maxRow }: any) => {
 };
 
 const Company = ({ company }: any) => {
+  //
   return (
     <div
       className={classNames({
@@ -83,11 +85,7 @@ const Company = ({ company }: any) => {
         <Avatar name={company?.company_name} />
       </div>
 
-      <div
-      //  className={styles.jobHireRecruiterName}
-      >
-        {company?.company_name}
-      </div>
+      <div data-role="company">{company?.company_name}</div>
     </div>
   );
 };
@@ -135,9 +133,11 @@ const Salary = ({ salary_info }: any) => {
   return (
     <div className={styles.salary}>
       <span className={styles.salaryText}>
-        {salary_info?.text}
+        <span data-role="salary">{salary_info?.text}</span>
         {salary_info?.type_text && (
-          <span className={styles.month}>[{salary_info?.type_text}]</span>
+          <span data-role="salaryType" className={styles.month}>
+            [{salary_info?.type_text}]
+          </span>
         )}
       </span>
     </div>
@@ -200,7 +200,7 @@ export const JobCardPc = ({ item }: any) => {
               [styles.jobHireTopTitle]: true,
             })}
           >
-            <span>{item.job_title}</span>
+            <span data-role="header">{item.job_title}</span>
 
             {item?.is_urgent && (
               <span className={styles.jobHireTitleUrgent}>
