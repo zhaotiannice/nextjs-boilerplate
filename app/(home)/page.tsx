@@ -29,7 +29,17 @@ export default async function Home() {
       </div>
 
       {/* {show && <iframe src="/" style={{ height: "50vh", width: "100vw" }} />} */}
-      <footer>home footer</footer>
+      <footer
+        style={{
+          textAlign: "center",
+          padding: 12,
+          backgroundColor: "#000",
+          fontSize: 20,
+          color: "#fff",
+        }}
+      >
+        home footer
+      </footer>
     </>
   );
 }

@@ -11,6 +11,7 @@ type parameterType = {
   onReport: (data: {
     element: HTMLElement;
     elementInfo: Record<string, any>;
+    elementData: Record<string, any>;
   }) => void;
 };
 type ExposureTracker = {
@@ -43,6 +44,8 @@ const createExposureTracker = (): ExposureTracker => {
   const maxDuration = 2000;
 
   const analyticsExposeFlag = "data-analytics-expose";
+
+  const analyticsDataKey = "data-analytics-data";
 
   const batchCheckExposure = () => {
     const now = utils.getTimestamp();
@@ -161,9 +164,11 @@ const createExposureTracker = (): ExposureTracker => {
     duration: number
   ) => {
     const elementInfo = utils.getElementInfo(element);
-    // utils.log('元素曝光结束', { elementId, duration, elementInfo });
+    const elementData = JSON.parse(
+      element.getAttribute(analyticsDataKey) || "{}"
+    );
 
-    config?.onReport?.({ element, elementInfo });
+    config?.onReport?.({ element, elementData, elementInfo });
   };
 
   let observed = false;

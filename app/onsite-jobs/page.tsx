@@ -20,7 +20,17 @@ export default async function Home() {
         <JobItemList data={data as any} />
       </div>
 
-      <div>onsite footer</div>
+      <div
+        style={{
+          textAlign: "center",
+          padding: 12,
+          backgroundColor: "#000",
+          fontSize: 20,
+          color: "#fff",
+        }}
+      >
+        onsite footer
+      </div>
     </>
   );
 }

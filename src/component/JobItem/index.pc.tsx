@@ -188,8 +188,8 @@ export const JobCardPc = ({ item }: any) => {
       data-analytics-expose
       data-analytics-id={item.job_id}
       data-analytics-data={JSON.stringify({
-        qid: `${item.query_id}`,
-        reco: `${item.reco_from}`,
+        qid: `${item.query_id || "dfd9b85f-8891-11f0-b810-a693b77e93c8"}`,
+        reco: `${item.reco_from || "es"}`,
         jobId: item.job_id,
       })}
     >

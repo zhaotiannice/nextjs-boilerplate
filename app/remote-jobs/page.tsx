@@ -17,7 +17,17 @@ export default async function Home() {
         <PageTitle title="Remote Jobs" />
         <JobItemList data={data as any} />
       </div>
-      <p>remote footer</p>
+      <p
+        style={{
+          textAlign: "center",
+          padding: 12,
+          backgroundColor: "#000",
+          fontSize: 20,
+          color: "#fff",
+        }}
+      >
+        Remote Footer
+      </p>
     </>
   );
 }

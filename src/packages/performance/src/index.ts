@@ -9,9 +9,7 @@ const endpoint = "/api/submit";
 const rtk = new ReportKit({ endpoint, requestThreshold: 1000 * 3 });
 
 reportPageView({
-  // router change
   onReport(data) {
-    // console.log("data", data);
     rtk.reportData({
       type: "page_view",
       data: data,
@@ -20,8 +18,8 @@ reportPageView({
 });
 
 exposureTracker.init({
-  onReport: ({ element, elementInfo }) => {
-    rtk.reportData({ type: "exposure", data: elementInfo });
+  onReport: ({ elementInfo, elementData, element }) => {
+    rtk.reportData({ type: "exposure", data: { elementInfo, elementData } });
   },
 });
 
