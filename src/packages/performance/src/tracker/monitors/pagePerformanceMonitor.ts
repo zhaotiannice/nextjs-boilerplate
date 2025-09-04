@@ -20,7 +20,7 @@ const firstProperties = [
   "ttfb",
   "fcp",
   "firstPaint",
-  "cls",
+  // "cls",
 ];
 let firstRun = false;
 
