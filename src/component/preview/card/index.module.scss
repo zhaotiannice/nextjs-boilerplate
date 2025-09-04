@@ -1,0 +1,27 @@
+.card {
+  position: relative;
+  box-sizing: border-box;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  & > div {
+    width: 100%;
+    border: none;
+  }
+}
+
+.canvas {
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.timer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}

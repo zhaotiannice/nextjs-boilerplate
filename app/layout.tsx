@@ -1,3 +1,4 @@
+import { PreviewBtn } from "@/src/component/preview";
 import "./globals.css";
 import Script from "next/script";
 
@@ -11,7 +12,10 @@ export default function RootLayout({
       <head>
         <Script strategy="beforeInteractive" src="/tracker/tracker.min.js" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <PreviewBtn />
+      </body>
     </html>
   );
 }

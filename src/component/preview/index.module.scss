@@ -1,0 +1,26 @@
+.floatBtn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  background-color: #1c70ee;
+  color: #fff;
+  font-size: 16px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 110;
+}
+
+.fullscreenModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 100;
+}

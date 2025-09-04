@@ -1898,6 +1898,15 @@ export const allJobs = job1.concat(
   job10 as any
 );
 
+const jobMap = {};
+allJobs.forEach((v) => {
+  jobMap[v.job_id] = v;
+});
+
+export let getJobById = (id: number) => {
+  return allJobs.find((v) => v.job_id === id);
+};
+
 export const getJobs = () => {
   function getWellDistributedRandom(min = 1, max = 6) {
     const sample1 = min + Math.random() * (max - min);

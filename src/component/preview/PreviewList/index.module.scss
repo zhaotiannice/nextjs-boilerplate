@@ -1,0 +1,36 @@
+// * {
+//   box-sizing: border-box;
+// }
+
+.previewArea {
+  display: flex;
+  flex-direction: row;
+  min-height: 400px;
+  position: relative;
+
+  .listRoot {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 100vh;
+    overflow: auto;
+    color: #000;
+
+    .listItem {
+      padding: 8px;
+      cursor: pointer;
+      max-width: 150px;
+
+      &.checked {
+        color: #0090ff;
+      }
+    }
+  }
+  .rightPreviewRoot {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
